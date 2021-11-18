@@ -13,16 +13,16 @@ class ErrorView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Icon(
+        const Icon(
           Icons.error_outline,
-          color: Theme.of(context).colorScheme.onError,
+          color: Colors.red,
           size: 60,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 16),
           child: Text(
             'Error: ${this._error}',
-            style: TextStyle(color: Theme.of(context).colorScheme.onError),
+            style: TextStyle(color: Colors.red),
           ),
         )
       ],

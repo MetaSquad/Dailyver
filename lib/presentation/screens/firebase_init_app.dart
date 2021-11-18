@@ -9,23 +9,25 @@ class FirebaseInit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _initialization,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return ErrorView(error: snapshot.error.toString());
-        }
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: const Center(
-              child: Text("Firebase Initié"),
-            ),
-          );
-        }
-        return const Loading();
-      },
+    return Scaffold(
+      body: FutureBuilder(
+        future: _initialization,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return ErrorView(error: snapshot.error.toString());
+          }
+          if (snapshot.connectionState == ConnectionState.done) {
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: const Center(
+                child: Text("Firebase Initié"),
+              ),
+            );
+          }
+          return const Loading();
+        },
+      ),
     );
   }
 }

@@ -8,10 +8,11 @@ class Loading extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
+      children: const [
         SizedBox(
           child: CircularProgressIndicator(
-              color: Theme.of(context).colorScheme.onBackground),
+            color: Colors.blue,
+          ),
           width: 60,
           height: 60,
         ),
@@ -20,7 +21,7 @@ class Loading extends StatelessWidget {
           child: Text(
             "Récupération des données...",
             style: TextStyle(
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Colors.black,
             ),
           ),
         )
