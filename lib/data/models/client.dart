@@ -19,7 +19,7 @@ class Client {
     name = (json['name'] != null) ? json['name'] : "";
     email = (json['email'] != null) ? json['email'] : "";
     location = (json['location'] != null) ? json['location'] : "";
-    cart = ((json['cart'] as List<String>).isNotEmpty) ? json['cart'] : [];
+    cart = ((json['cart'] as List<dynamic>).isNotEmpty) ? json['cart'] : [];
     //TODO gethistory from json
     favoriteListId =
         (json['favoriteListId'] != null) ? json['favoriteListId'] : "";
