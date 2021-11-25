@@ -1,3 +1,5 @@
+import 'package:dailyver/data/models/client.dart';
+import 'package:dailyver/data/services/client_service.dart';
 import 'package:dailyver/presentation/widgets/error_widget.dart';
 import 'package:dailyver/presentation/widgets/loading_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,8 +22,36 @@ class FirebaseInit extends StatelessWidget {
             return Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              child: const Center(
-                child: Text("Firebase Initié"),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      final ClientService _clientService = ClientService();
+                      _clientService.addClient(Client("Alexandre CANTON CONDES",
+                          "alexCantonCondes@gmail.com", "Castelnau"));
+                    },
+                    child: const Text("Ajouter un Client"),
+                  ),
+                  FutureBuilder<List<Client>>(
+                    future: ClientService().getAllClient(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<List<Client>> snapshot) {
+                      if (snapshot.hasError) {
+                        print("error ->" + snapshot.error.toString());
+                        return ErrorView(error: snapshot.error.toString());
+                      }
+                      if (snapshot.hasData) {
+                        for (var element in snapshot.data!) {
+                          print(element.name);
+                        }
+                        return Text(snapshot.data![0].name);
+                      }
+                      return Loading();
+                    },
+                  ),
+                ],
               ),
             );
           }
